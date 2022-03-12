@@ -8,6 +8,7 @@ const App = (props) => {
   return (
     <>
       <h1>Welcome, {name}</h1>
+      
       <PostList />
     </>
   );

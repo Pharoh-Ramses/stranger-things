@@ -1,17 +1,18 @@
-
 import React from "react";
-import { hot } from 'react-hot-loader/root';
+import { hot } from "react-hot-loader/root";
 import PostList from "./PostList";
+import RegisterForm from "./register";
 
 const App = (props) => {
   const { name } = props;
   return (
     <>
       <h1>Welcome, {name}</h1>
-      
+      <RegisterForm />
       <PostList />
     </>
   );
-}
+};
 
 export default hot(App);
+

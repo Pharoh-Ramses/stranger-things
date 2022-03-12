@@ -4,17 +4,25 @@ import { getPosts } from './api';
 const PostList = () => {
     const [posts, setPosts] = useState([]);
 
-    useEffect(async () => {
-        const posts = await getPosts();
-        setPosts(posts);
-    }, []);
+    useEffect(() => {
+        const getPosts = async () => {
+          const resp = await fetch(
+            "https://strangers-things.herokuapp.com/api/2112-ftb-et-web-pt/posts"
+          );
+    
+          const data = await resp.json();
+          console.log(data.data.posts);
+          setPosts(data.data.posts);
+        };
+        getPosts();
+      }, []);
 
     return (
         <div>
             {posts.map(post =>
-                <div key={post.id}>
+                <div key={post._id}>
                     <h2>{post.title}</h2>
-                    <p>{post.body}</p>
+                    <p>{post.description}</p>
                 </div>
             )}
         </div>

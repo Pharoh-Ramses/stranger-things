@@ -6,22 +6,21 @@ const PostList = () => {
 
     useEffect(() => {
         const getPosts = async () => {
-            const resp = await fetch (
-                "https://strangers-things.herokuapp.com/api/2004-UNF-HY-WEB-PT/posts"
-            );
-
-            const data = await resp.json();
-            console.log(data.data.post);
-            setPosts(data.data.post);
+          const resp = await fetch(
+            "https://strangers-things.herokuapp.com/api/2112-ftb-et-web-pt/posts"
+          );
+    
+          const data = await resp.json();
+          console.log(data.data.posts);
+          setPosts(data.data.posts);
         };
         getPosts();
-    },[]);
-
+      }, []);
 
     return (
         <div>
             {posts.map(post =>
-                <div key={post.id}>
+                <div key={post._id}>
                     <h2>{post.title}</h2>
                     <p>{post.description}</p>
                 </div>

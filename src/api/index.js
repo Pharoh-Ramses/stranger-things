@@ -1,5 +1,4 @@
 export const getPosts = async () => {
-<<<<<<< HEAD
   const url =
     "https://strangers-things.herokuapp.com/api/2112-ftb-et-web-pt/posts";
   const response = await fetch(url);
@@ -37,31 +36,32 @@ export const registerUser = async (username, password) => {
   } catch (err) {
     console.error("Could not register user", err);
   }
-=======
-    const url = 'https://strangers-things.herokuapp.com/api/2112-ftb-et-web-pt/posts';
-    const response = await fetch(url)
-    const json = await response.json()
-    return json;
-} 
-export const registerUser = async (username, password) => {
-    const url = 'https://strangers-things.herokuapp.com/api/2112-ftb-et-web-pt/users/register';
-    try{
+
+};
+
+export const loginUser = async (username, password) => {
+  const url = "https://strangers-things.herokuapp.com/api/2112-ftb-et-web-pt/users/login"
+
+  try{
     const response = await fetch(url, {
-        method: "POST",
-        headers: {"Content-Type": "application/json",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          username: username,
+          password: password
         },
-        body: JSON.stringify({
-         user: {
-            username: username,
-            password: password,
-        },
-    }),
-});
-    const json = await response.json()
+      })
+    })
+    const json = await response.json();
+    
+    const token = json.data.token;
+    localStorage.setItem('token', token);
     console.log(json);
     return json;
-} catch (err){
-    console.error('Could not register user', err);
-}
->>>>>>> 3e0c7130b3968a1621a83f7e56ab3322b258c1d4
+  } catch (err) {
+    console.error("Could not login, username/password do not exist or were incorrect");
+  }
 };

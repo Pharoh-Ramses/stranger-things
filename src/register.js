@@ -5,7 +5,11 @@ const RegisterForm = () => {
         const[username, setUsername] = useState("");
         const[password, setPassword] = useState("");
         const[passwordConfirmation, setpasswordConfirmation] = useState("");
+        const[token, setToken] = useState("");
 
+useEffect(()=>{
+  localStorage.getItem('data.token');
+})
         
   return (
     <div>

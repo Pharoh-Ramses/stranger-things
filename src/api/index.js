@@ -9,6 +9,7 @@ export const getPosts = async () => {
 export const registerUser = async (username, password) => {
   const url =
     "https://strangers-things.herokuapp.com/api/2112-ftb-et-web-pt/users/register";
+  
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -23,6 +24,13 @@ export const registerUser = async (username, password) => {
       }),
     });
     const json = await response.json();
+    
+    const token = json.data.token;
+    localStorage.setItem('token', token);
+    //localStorage.getItem('token');
+
+    
+      
     console.log(json);
     return json;
   } catch (err) {
